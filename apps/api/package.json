@@ -1,0 +1,47 @@
+{
+  "name": "@rt/api",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "node --watch --watch-preserve-output --env-file=../../.env --import tsx src/server.ts",
+    "build": "prisma generate && tsup",
+    "start": "node --env-file-if-exists=../../.env dist/server.js",
+    "typecheck": "tsc --noEmit",
+    "lint": "eslint .",
+    "test": "vitest run",
+    "db:generate": "prisma generate",
+    "db:migrate": "prisma migrate dev",
+    "db:deploy": "prisma migrate deploy",
+    "db:seed": "tsx --env-file=../../.env prisma/seed.ts",
+    "openapi": "tsx --env-file=../../.env scripts/export-openapi.ts"
+  },
+  "dependencies": {
+    "@fastify/cookie": "^11.1.3",
+    "@fastify/helmet": "^13.2.0",
+    "@fastify/rate-limit": "^11.2.1",
+    "@fastify/swagger": "^9.9.2",
+    "@fastify/swagger-ui": "^6.1.2",
+    "@node-rs/argon2": "^2.2.2",
+    "@prisma/adapter-pg": "7.10.1",
+    "@prisma/client": "7.10.1",
+    "@rt/shared": "workspace:*",
+    "dotenv": "^18.0.9",
+    "fastify": "^5.12.7",
+    "fastify-plugin": "^6.0.1",
+    "fastify-type-provider-zod": "^7.0.0",
+    "nodemailer": "^10.2.1",
+    "openapi-types": "^12.1.3",
+    "pdfkit": "~0.17.2",
+    "pg": "^8.23.1",
+    "prisma": "7.10.1",
+    "zod": "^4.6.7"
+  },
+  "devDependencies": {
+    "@types/nodemailer": "^8.0.2",
+    "@types/pdfkit": "^0.17.7",
+    "@types/pg": "^8.23.1",
+    "tsup": "^9.0.0",
+    "tsx": "^4.23.15"
+  }
+}

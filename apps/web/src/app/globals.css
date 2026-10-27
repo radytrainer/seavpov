@@ -1,0 +1,96 @@
+@import 'tailwindcss';
+
+/* Screens with little vertical space (small phones, 720p laptops). */
+@custom-variant short (@media (max-height: 720px));
+
+/*
+ * Design tokens. One restrained accent (teal) on a light neutral surface.
+ * Components read these through Tailwind utilities (bg-primary, text-muted-foreground, …).
+ */
+:root {
+  --radius: 0.5rem;
+  --background: oklch(0.985 0.002 250);
+  --foreground: oklch(0.21 0.01 260);
+  --card: oklch(1 0 0);
+  --card-foreground: var(--foreground);
+  --popover: oklch(1 0 0);
+  --popover-foreground: var(--foreground);
+  --primary: oklch(0.5 0.09 195);
+  --primary-foreground: oklch(0.99 0 0);
+  --secondary: oklch(0.96 0.004 250);
+  --secondary-foreground: oklch(0.27 0.01 260);
+  --muted: oklch(0.965 0.003 250);
+  --muted-foreground: oklch(0.47 0.012 260);
+  --accent: oklch(0.955 0.02 195);
+  --accent-foreground: oklch(0.32 0.06 195);
+  --destructive: oklch(0.55 0.2 27);
+  --destructive-foreground: oklch(0.99 0 0);
+  --success: oklch(0.52 0.12 155);
+  --warning: oklch(0.62 0.13 70);
+  /* Text on warning backgrounds (meets WCAG AA 4.5:1 on light tints). */
+  --warning-foreground: oklch(0.45 0.1 60);
+  --border: oklch(0.91 0.005 250);
+  --input: oklch(0.88 0.006 250);
+  --ring: oklch(0.5 0.09 195);
+  /* Validated with the dataviz palette checker (lightness, chroma, contrast vs card). */
+  --chart-1: #00909c;
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-success: var(--success);
+  --color-warning: var(--warning);
+  --color-warning-foreground: var(--warning-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --color-chart-1: var(--chart-1);
+  --radius-sm: calc(var(--radius) - 2px);
+  --radius-md: var(--radius);
+  --radius-lg: calc(var(--radius) + 2px);
+  --radius-xl: calc(var(--radius) + 6px);
+  --font-sans: var(--font-inter), var(--font-khmer), ui-sans-serif, system-ui, sans-serif;
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+  html {
+    -webkit-text-size-adjust: 100%;
+  }
+  body {
+    @apply bg-background text-foreground antialiased;
+    /* Khmer script needs extra line height so stacked vowels/subscripts are not clipped. */
+    line-height: 1.6;
+  }
+  :lang(km),
+  .khmer-safe {
+    line-height: 1.9;
+  }
+  /* Long unbroken words (URLs, Khmer without spaces) must not cause horizontal overflow. */
+  p,
+  li,
+  td,
+  dd,
+  h1,
+  h2,
+  h3 {
+    overflow-wrap: anywhere;
+  }
+}

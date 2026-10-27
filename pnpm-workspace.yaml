@@ -1,0 +1,14 @@
+packages:
+  - apps/*
+  - packages/*
+
+# Dependencies allowed to run install scripts (pnpm blocks all others by default).
+allowBuilds:
+  '@prisma/engines': true
+  prisma: true
+  esbuild: true
+  sharp: true
+  unrs-resolver: true
+
+patchedDependencies:
+  fontkit@2.0.4: patches/fontkit@2.0.4.patch

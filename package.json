@@ -1,0 +1,35 @@
+{
+  "name": "reading-tracker",
+  "private": true,
+  "version": "0.1.0",
+  "description": "Physical Book Reading Tracker - monorepo",
+  "packageManager": "pnpm@11.20.0",
+  "engines": {
+    "node": ">=22.12"
+  },
+  "scripts": {
+    "dev": "pnpm --parallel --filter @rt/api --filter @rt/web dev",
+    "build": "pnpm -r build",
+    "typecheck": "pnpm -r typecheck",
+    "lint": "pnpm -r lint",
+    "format": "prettier --write .",
+    "format:check": "prettier --check .",
+    "test": "pnpm -r test",
+    "test:e2e": "pnpm --filter @rt/web test:e2e",
+    "db:up": "docker compose up -d db",
+    "db:migrate": "pnpm --filter @rt/api db:migrate",
+    "db:seed": "pnpm --filter @rt/api db:seed",
+    "check": "pnpm format:check && pnpm lint && pnpm typecheck && pnpm test",
+    "start:prod": "pnpm build && pnpm --parallel --filter @rt/api --filter @rt/web start"
+  },
+  "devDependencies": {
+    "@eslint/js": "^10.0.1",
+    "@types/node": "^22.20.5",
+    "eslint": "^10.13.0",
+    "globals": "^17.13.0",
+    "prettier": "^3.9.10",
+    "typescript": "6.0.3",
+    "typescript-eslint": "^8.72.0",
+    "vitest": "^5.0.5"
+  }
+}
